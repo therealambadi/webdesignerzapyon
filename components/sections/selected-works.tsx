@@ -8,15 +8,6 @@ import { SectionTitle } from "@/components/ui/section-title"
 const works = [
   {
     id: 1,
-    title: "Modern Hero",
-    category: "Hero Section",
-    description: "Modern hero section design with contemporary features and animations",
-    image: "/images/work-fashion.png",
-    link: "https://modern-hero-section-840602999067.us-west1.run.app",
-    tags: ["Hero", "Modern", "Animation"],
-  },
-  {
-    id: 2,
     title: "Boty Skincare",
     category: "E-commerce",
     description: "Beautiful e-commerce website for skincare products with modern design",
@@ -25,7 +16,7 @@ const works = [
     tags: ["E-commerce", "React", "Design"],
   },
   {
-    id: 3,
+    id: 2,
     title: "Datacore Hero",
     category: "Data Platform",
     description: "Data visualization platform with hero section design",
@@ -34,13 +25,22 @@ const works = [
     tags: ["Data", "Platform", "Hero"],
   },
   {
-    id: 4,
+    id: 3,
     title: "Mono E-commerce",
     category: "E-commerce Platform",
     description: "Comprehensive e-commerce platform with advanced functionality",
     image: "/images/work-tasks.png",
     link: "https://v0-mono-ecommerce-template-j8.vercel.app",
     tags: ["E-commerce", "Platform", "Advanced"],
+  },
+  {
+    id: 4,
+    title: "Modern Hero",
+    category: "Hero Section",
+    description: "Modern hero section design with contemporary features and animations",
+    image: "/images/work-fashion.png",
+    link: "https://modern-hero-section-840602999067.us-west1.run.app",
+    tags: ["Hero", "Modern", "Animation"],
   },
   {
     id: 5,
