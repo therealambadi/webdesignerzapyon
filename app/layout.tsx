@@ -10,9 +10,9 @@ const interTight = Inter_Tight({
 })
 
 export const metadata: Metadata = {
-  title: "Zapyon | Premium Web Development & Design Agency",
-  description: "Zapyon builds exceptional websites that drive business growth. Professional web development, custom design, and digital solutions for startups and enterprises worldwide.",
-  keywords: ["web development", "website design", "business websites", "custom websites", "Zapyon", "web agency", "digital solutions", "responsive design", "SEO optimization", "e-commerce development"],
+  title: "Zapyon | Premium Web Development & Design Agency | Boty Skincare & Modern Heroes",
+  description: "Zapyon builds exceptional websites including Boty Skincare, Modern Hero, and Datacore Hero. Professional web development, custom design, and digital solutions for startups and enterprises worldwide. Contact Aditya Bobby at +91 94461 81036.",
+  keywords: ["web development", "website design", "business websites", "custom websites", "Zapyon", "web agency", "digital solutions", "responsive design", "SEO optimization", "e-commerce development", "Boty Skincare", "Modern Hero", "Datacore Hero", "hero sections", "AI platforms", "design studios"],
   authors: [{ name: "Aditya Bobby", url: "https://zapyon.com" }],
   creator: "Aditya Bobby",
   publisher: "Zapyon",
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     canonical: new URL("https://zapyon.com"),
   },
   openGraph: {
-    title: "Zapyon | Premium Web Development & Design Agency",
-    description: "Zapyon builds exceptional websites that drive business growth. Professional web development, custom design, and digital solutions for startups and enterprises worldwide.",
+    title: "Zapyon | Premium Web Development & Design Agency | Boty Skincare & Modern Heroes",
+    description: "Zapyon builds exceptional websites including Boty Skincare, Modern Hero, and Datacore Hero. Professional web development, custom design, and digital solutions. Contact Aditya Bobby at +91 94461 81036.",
     url: "https://zapyon.com",
     siteName: "Zapyon",
     locale: "en_US",
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zapyon | Premium Web Development & Design Agency",
-    description: "Zapyon builds exceptional websites that drive business growth. Professional web development, custom design, and digital solutions.",
+    title: "Zapyon | Premium Web Development & Design Agency | Boty Skincare & Modern Heroes",
+    description: "Zapyon builds exceptional websites including Boty Skincare, Modern Hero, and Datacore Hero. Professional web development, custom design, and digital solutions. Contact Aditya Bobby at +91 94461 81036.",
     site: "@zapyon",
     creator: "@adityabobby",
   },
@@ -73,7 +73,7 @@ const jsonLd = {
   "name": "Zapyon",
   "url": "https://zapyon.com",
   "logo": "https://zapyon.com/images/orb.png",
-  "description": "Premium web development and design agency building exceptional websites for businesses worldwide.",
+  "description": "Premium web development and design agency building exceptional websites including Boty Skincare, Modern Hero, Datacore Hero, and AI-powered platforms for businesses worldwide.",
   "founder": {
     "@type": "Person",
     "name": "Aditya Bobby",
@@ -85,13 +85,45 @@ const jsonLd = {
     "@type": "ContactPoint",
     "telephone": "+91 94461 81036",
     "email": "aditya@zapyon.com",
-    "contactType": "customer service"
+    "contactType": "customer service",
+    "availableLanguage": "English"
   },
   "sameAs": [
     "https://twitter.com/zapyon",
     "https://linkedin.com/company/zapyon"
   ],
-  "serviceType": "Professional Web Development & Design Services"
+  "serviceType": "Professional Web Development & Design Services",
+  "areaServed": "Worldwide",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Web Development Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "E-commerce Development",
+          "description": "Custom e-commerce websites like Boty Skincare"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Hero Section Design",
+          "description": "Modern hero sections and landing pages"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "AI Platform Development",
+          "description": "AI-powered platforms and design studios"
+        }
+      }
+    ]
+  }
 }
 
 export default function RootLayout({
