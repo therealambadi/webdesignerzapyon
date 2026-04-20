@@ -16,21 +16,21 @@ export const metadata: Metadata = {
   authors: [{ name: "Aditya Bobby", url: "https://zapyon.com" }],
   creator: "Aditya Bobby",
   publisher: "Zapyon",
-  formatDetection: { email: "aditya@zapyon.com" },
+  formatDetection: { email: "aditya@zapyon.com", telephone: "+919446181036" },
   metadataBase: new URL("https://zapyon.com"),
   alternates: {
     canonical: new URL("https://zapyon.com"),
   },
   openGraph: {
-    title: "Zapyon | Premium Web Development & Design Agency | Boty Skincare & Modern Heroes",
-    description: "Zapyon builds exceptional websites including Boty Skincare, Modern Hero, and Datacore Hero. Professional web development, custom design, and digital solutions. Contact Aditya Bobby at +91 94461 81036.",
+    title: "Zapyon | Premium Web Development & Design Agency",
+    description: "The web presence your brand actually deserves. We design and engineer high-performance systems that convert attention into revenue through strategy, product design, and scalable infrastructure.",
     url: "https://zapyon.com",
     siteName: "Zapyon",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "/images/orb.png",
+        url: "https://zapyon.com/images/orb.png",
         width: 1200,
         height: 630,
         alt: "Zapyon - Premium Web Development Agency",
@@ -39,10 +39,16 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zapyon | Premium Web Development & Design Agency | Boty Skincare & Modern Heroes",
-    description: "Zapyon builds exceptional websites including Boty Skincare, Modern Hero, and Datacore Hero. Professional web development, custom design, and digital solutions. Contact Aditya Bobby at +91 94461 81036.",
+    title: "Zapyon | Premium Web Development & Design Agency",
+    description: "The web presence your brand actually deserves. We design and engineer high-performance systems that convert attention into revenue through strategy, product design, and scalable infrastructure.",
     site: "@zapyon",
     creator: "@adityabobby",
+    images: {
+      url: "https://zapyon.com/images/orb.png",
+      width: 1200,
+      height: 630,
+      alt: "Zapyon - Premium Web Development Agency",
+    },
   },
   robots: {
     index: true,
