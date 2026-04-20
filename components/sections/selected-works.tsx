@@ -4,7 +4,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { SectionTitle } from "@/components/ui/section-title"
-import { useEffect, useRef, useState } from "react"
 
 const works = [
   {
@@ -81,59 +80,6 @@ const works = [
   },
 ]
 
-// Lazy loading iframe component
-const LazyIframe = ({ src, title, className, style, sandbox }: any) => {
-  const [isVisible, setIsVisible] = useState(false)
-  const [isLoaded, setIsLoaded] = useState(false)
-  const iframeRef = useRef<HTMLIFrameElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.disconnect()
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '50px'
-      }
-    )
-
-    if (iframeRef.current) {
-      observer.observe(iframeRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  const handleLoad = () => {
-    setIsLoaded(true)
-  }
-
-  return (
-    <div ref={iframeRef} className="relative w-full h-full">
-      {!isLoaded && (
-        <div className="absolute inset-0 bg-secondary animate-pulse flex items-center justify-center">
-          <div className="text-muted-foreground text-sm">Loading preview...</div>
-        </div>
-      )}
-      {isVisible && (
-        <iframe
-          src={src}
-          title={title}
-          className={className}
-          style={style}
-          sandbox={sandbox}
-          onLoad={handleLoad}
-          loading="lazy"
-        />
-      )}
-    </div>
-  )
-}
-
 export function SelectedWorks() {
   return (
     <section id="works" className="py-20 md:py-10 md:pt-32 pb-4">
@@ -167,10 +113,12 @@ export function SelectedWorks() {
                 <article className="overflow-hidden rounded-2xl md:rounded-3xl border border-border bg-card transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                   {/* Live Website Preview */}
                   <div className="relative aspect-[16/9] overflow-hidden bg-secondary rounded-t-2xl md:rounded-t-3xl">
-                    <LazyIframe
+                    <iframe
                       src={work.link}
                       title={work.title}
                       className="border-0"
+                      loading="lazy"
+                      scrolling="no"
                       style={{
                         width: '150%',
                         height: '200%',

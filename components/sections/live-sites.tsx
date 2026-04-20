@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { SectionTitle } from "@/components/ui/section-title"
-import { useEffect, useRef, useState } from "react"
 
 const liveSites = [
   {
@@ -38,15 +37,7 @@ const liveSites = [
     category: "Studio",
     status: "Live",
   },
-  {
-    id: 5,
-    title: "Grow",
-    description: "AI-powered growth platform with modern interface and features",
-    url: "https://my-google-ai-studio-applet-840602999067.us-west1.run.app",
-    category: "AI Application",
-    status: "Live",
-  },
-  {
+    {
     id: 6,
     title: "Power AI Platform",
     description: "Advanced AI platform with powerful features and tools",
@@ -88,6 +79,14 @@ const liveSites = [
   },
   {
     id: 11,
+    title: "Grow",
+    description: "AI-powered growth platform with modern interface and features",
+    url: "https://my-google-ai-studio-applet-840602999067.us-west1.run.app",
+    category: "AI Application",
+    status: "Live",
+  },
+  {
+    id: 12,
     title: "Mono E-commerce",
     description: "Comprehensive e-commerce platform with advanced functionality",
     url: "https://v0-mono-ecommerce-template-j8.vercel.app",
@@ -95,7 +94,7 @@ const liveSites = [
     status: "Live",
   },
   {
-    id: 12,
+    id: 13,
     title: "Evasion E-commerce",
     description: "Modern e-commerce template with advanced features and responsive design",
     url: "https://v0-evasion-ecommerce-template-fc.vercel.app",
@@ -103,15 +102,15 @@ const liveSites = [
     status: "Live",
   },
   {
-    id: 13,
+    id: 14,
     title: "Modern Agency",
     description: "Sleek modern agency website with impressive animations and interactions",
-    url: "https://v0-modern-agency-website-liquid-five-woad.vercel.app",
-    category: "Agency Website",
+    url: "https://modern-agency-template-840602999067.us-west1.run.app",
+    category: "Agency",
     status: "Live",
   },
   {
-    id: 14,
+    id: 15,
     title: "Optus Platform",
     description: "Modern business platform with clean design and seamless user experience",
     url: "https://optimus-hazel.vercel.app/",
@@ -119,7 +118,7 @@ const liveSites = [
     status: "Live",
   },
   {
-    id: 15,
+    id: 16,
     title: "Architecture Studio",
     description: "Elegant architecture studio website showcasing projects and services",
     url: "https://architecture-studio-lovat.vercel.app/",
@@ -127,59 +126,6 @@ const liveSites = [
     status: "Live",
   },
 ]
-
-// Lazy loading iframe component
-const LazyIframe = ({ src, title, className, style, sandbox }: any) => {
-  const [isVisible, setIsVisible] = useState(false)
-  const [isLoaded, setIsLoaded] = useState(false)
-  const iframeRef = useRef<HTMLIFrameElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.disconnect()
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '50px'
-      }
-    )
-
-    if (iframeRef.current) {
-      observer.observe(iframeRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  const handleLoad = () => {
-    setIsLoaded(true)
-  }
-
-  return (
-    <div ref={iframeRef} className="relative w-full h-full">
-      {!isLoaded && (
-        <div className="absolute inset-0 bg-secondary animate-pulse flex items-center justify-center">
-          <div className="text-muted-foreground text-sm">Loading preview...</div>
-        </div>
-      )}
-      {isVisible && (
-        <iframe
-          src={src}
-          title={title}
-          className={className}
-          style={style}
-          sandbox={sandbox}
-          onLoad={handleLoad}
-          loading="lazy"
-        />
-      )}
-    </div>
-  )
-}
 
 export function LiveSites() {
   return (
@@ -200,6 +146,18 @@ export function LiveSites() {
           </Link>
         </div>
 
+        {/* Loading Warning */}
+        <div className="mb-8 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 rounded-full bg-yellow-500 flex items-center justify-center flex-shrink-0">
+              <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+            </div>
+            <p className="text-sm text-yellow-800 dark:text-yellow-200">
+              Live sites take time to load - please be patient
+            </p>
+          </div>
+        </div>
+
         {/* Live Sites Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {liveSites.map((site) => (
@@ -207,21 +165,20 @@ export function LiveSites() {
               <article className="h-full overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                 {/* Live Site Preview */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-secondary">
-                  <LazyIframe
+                  <iframe
                     src={site.url}
                     title={site.title}
                     className="border-0"
+                    loading="lazy"
                     style={{
-                      width: '150%',
+                      width: '200%',
                       height: '200%',
-                      transform: 'scale(0.67)',
+                      transform: 'scale(0.5)',
                       transformOrigin: '0 0',
                       pointerEvents: 'none',
                       position: 'absolute',
                       top: 0,
                       left: 0,
-                      clip: 'rect(0, 1000px, 600px, 0)',
-                      overflow: 'hidden',
                     }}
                     sandbox="allow-same-origin allow-scripts"
                   />
@@ -230,7 +187,7 @@ export function LiveSites() {
                     {site.status}
                   </div>
                   <div className="absolute bottom-2 right-2 bg-background/80 backdrop-blur-sm px-2 py-1 rounded text-xs text-muted-foreground">
-                    Hero Preview
+                    Live Preview
                   </div>
                 </div>
 
