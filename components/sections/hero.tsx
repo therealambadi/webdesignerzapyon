@@ -45,7 +45,7 @@ export function Hero() {
 
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 py-20 md:py-32 md:pb-4 pb-4 pt-4 md:pt-32">
         <div className="max-w-4xl">
-          <p className="text-muted-foreground mb-6 text-lg font-normal">Your digital growth partner</p>
+          <p className="text-muted-foreground mb-6 text-lg font-normal">Trusted by 150+ ambitious brands</p>
 
           {/* Main Title with animated words */}
           <h1 className="text-5xl sm:text-6xl lg:text-[96px] font-semibold tracking-tight leading-[1] text-balance md:text-9xl">

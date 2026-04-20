@@ -10,8 +10,8 @@ const interTight = Inter_Tight({
 })
 
 export const metadata: Metadata = {
-  title: "Zapyon | Premium Web Development & Design Agency | Boty Skincare & Modern Heroes",
-  description: "Zapyon builds exceptional websites including Boty Skincare, Modern Hero, and Datacore Hero. Professional web development, custom design, and digital solutions for startups and enterprises worldwide. Contact Aditya Bobby at +91 94461 81036.",
+  title: "Zapyon - Premium Web Development & Design Agency | Trusted by 150+ Brands",
+  description: "Zapyon architects digital success with premium web development, custom design, and innovative solutions. Trusted by 150+ ambitious brands worldwide. Contact Aditya Bobby at +91 94461 81036 for your next project.",
   keywords: ["web development", "website design", "business websites", "custom websites", "Zapyon", "web agency", "digital solutions", "responsive design", "SEO optimization", "e-commerce development", "Boty Skincare", "Modern Hero", "Datacore Hero", "hero sections", "AI platforms", "design studios"],
   authors: [{ name: "Aditya Bobby", url: "https://zapyon.com" }],
   creator: "Aditya Bobby",
