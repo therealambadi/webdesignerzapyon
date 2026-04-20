@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { SectionTitle } from "@/components/ui/section-title"
+import { useEffect, useRef, useState } from "react"
 
 const liveSites = [
   {
@@ -127,6 +128,59 @@ const liveSites = [
   },
 ]
 
+// Lazy loading iframe component
+const LazyIframe = ({ src, title, className, style, sandbox }: any) => {
+  const [isVisible, setIsVisible] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const iframeRef = useRef<HTMLIFrameElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.disconnect()
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '50px'
+      }
+    )
+
+    if (iframeRef.current) {
+      observer.observe(iframeRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  const handleLoad = () => {
+    setIsLoaded(true)
+  }
+
+  return (
+    <div ref={iframeRef} className="relative w-full h-full">
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-secondary animate-pulse flex items-center justify-center">
+          <div className="text-muted-foreground text-sm">Loading preview...</div>
+        </div>
+      )}
+      {isVisible && (
+        <iframe
+          src={src}
+          title={title}
+          className={className}
+          style={style}
+          sandbox={sandbox}
+          onLoad={handleLoad}
+          loading="lazy"
+        />
+      )}
+    </div>
+  )
+}
+
 export function LiveSites() {
   return (
     <section id="live-sites" className="py-20 md:py-32 border-border border-t-0">
@@ -153,20 +207,21 @@ export function LiveSites() {
               <article className="h-full overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                 {/* Live Site Preview */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-secondary">
-                  <iframe
+                  <LazyIframe
                     src={site.url}
                     title={site.title}
                     className="border-0"
-                    loading="lazy"
                     style={{
-                      width: '200%',
+                      width: '150%',
                       height: '200%',
-                      transform: 'scale(0.5)',
+                      transform: 'scale(0.67)',
                       transformOrigin: '0 0',
                       pointerEvents: 'none',
                       position: 'absolute',
                       top: 0,
                       left: 0,
+                      clip: 'rect(0, 1000px, 600px, 0)',
+                      overflow: 'hidden',
                     }}
                     sandbox="allow-same-origin allow-scripts"
                   />
@@ -175,7 +230,7 @@ export function LiveSites() {
                     {site.status}
                   </div>
                   <div className="absolute bottom-2 right-2 bg-background/80 backdrop-blur-sm px-2 py-1 rounded text-xs text-muted-foreground">
-                    Live Preview
+                    Hero Preview
                   </div>
                 </div>
 

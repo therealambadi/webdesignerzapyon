@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { SectionTitle } from "@/components/ui/section-title"
+import { useEffect, useRef, useState } from "react"
 
 const works = [
   {
@@ -17,39 +18,39 @@ const works = [
   },
   {
     id: 2,
-    title: "Datacore Hero",
-    category: "Data Platform",
-    description: "Data visualization platform with hero section design",
+    title: "Viral Agency",
+    category: "Marketing Agency",
+    description: "Marketing agency website with viral content and features",
     image: "/images/work-crypto.png",
-    link: "https://datacore-hero-section-840602999067.us-west1.run.app",
-    tags: ["Data", "Platform", "Hero"],
+    link: "https://viralagency-hero-840602999067.us-west1.run.app",
+    tags: ["Marketing", "Agency", "Viral"],
   },
   {
     id: 3,
+    title: "Mindloop Platform",
+    category: "Wellness Platform",
+    description: "Mindfulness and meditation platform with modern design",
+    image: "/images/work-fashion.png",
+    link: "https://mindloop-840602999067.us-west1.run.app",
+    tags: ["Wellness", "Meditation", "Platform"],
+  },
+  {
+    id: 4,
     title: "Modern Hero",
     category: "Hero Section",
     description: "Modern hero section design with contemporary features and animations",
-    image: "/images/work-fashion.png",
+    image: "/images/work-tasks.png",
     link: "https://modern-hero-section-840602999067.us-west1.run.app",
     tags: ["Hero", "Modern", "Animation"],
   },
   {
-    id: 4,
+    id: 5,
     title: "Mono E-commerce",
     category: "E-commerce Platform",
     description: "Comprehensive e-commerce platform with advanced functionality",
-    image: "/images/work-tasks.png",
+    image: "/images/work-crypto.png",
     link: "https://v0-mono-ecommerce-template-j8.vercel.app",
     tags: ["E-commerce", "Platform", "Advanced"],
-  },
-  {
-    id: 5,
-    title: "Design AI Studio",
-    category: "Design Studio",
-    description: "Creative design studio with AI-powered tools and features",
-    image: "/images/work-crypto.png",
-    link: "https://design-ai-studio-840602999067.us-west1.run.app",
-    tags: ["Design", "AI", "Studio"],
   },
   {
     id: 6,
@@ -62,6 +63,15 @@ const works = [
   },
   {
     id: 7,
+    title: "Datacore Hero",
+    category: "Data Platform",
+    description: "Data visualization platform with hero section design",
+    image: "/images/work-crypto.png",
+    link: "https://datacore-hero-section-840602999067.us-west1.run.app",
+    tags: ["Data", "Platform", "Hero"],
+  },
+  {
+    id: 8,
     title: "Aethera Studio",
     category: "Studio",
     description: "Creative studio website with modern design and interactive features",
@@ -70,6 +80,59 @@ const works = [
     tags: ["Studio", "Creative", "Interactive"],
   },
 ]
+
+// Lazy loading iframe component
+const LazyIframe = ({ src, title, className, style, sandbox }: any) => {
+  const [isVisible, setIsVisible] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const iframeRef = useRef<HTMLIFrameElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.disconnect()
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '50px'
+      }
+    )
+
+    if (iframeRef.current) {
+      observer.observe(iframeRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  const handleLoad = () => {
+    setIsLoaded(true)
+  }
+
+  return (
+    <div ref={iframeRef} className="relative w-full h-full">
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-secondary animate-pulse flex items-center justify-center">
+          <div className="text-muted-foreground text-sm">Loading preview...</div>
+        </div>
+      )}
+      {isVisible && (
+        <iframe
+          src={src}
+          title={title}
+          className={className}
+          style={style}
+          sandbox={sandbox}
+          onLoad={handleLoad}
+          loading="lazy"
+        />
+      )}
+    </div>
+  )
+}
 
 export function SelectedWorks() {
   return (
@@ -104,12 +167,10 @@ export function SelectedWorks() {
                 <article className="overflow-hidden rounded-2xl md:rounded-3xl border border-border bg-card transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                   {/* Live Website Preview */}
                   <div className="relative aspect-[16/9] overflow-hidden bg-secondary rounded-t-2xl md:rounded-t-3xl">
-                    <iframe
+                    <LazyIframe
                       src={work.link}
                       title={work.title}
                       className="border-0"
-                      loading="lazy"
-                      scrolling="no"
                       style={{
                         width: '150%',
                         height: '200%',
